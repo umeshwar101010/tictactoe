@@ -1,0 +1,223 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	--cell-size: 100px;
+	--mark-size: calc(var(--cell-size)*.9);
+}
+body {
+	margin: 0;
+}
+
+.bodyDark {
+	background-color: black;
+}
+
+.bodyWhite {
+	background-color: white;
+}
+
+.board {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	justify-content: center;
+	justify-items: center;
+	align-content: center;
+	align-items: center;
+	grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+	width: var(--cell-size);
+	height: var(--cell-size);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+	border: 1px solid black;
+}
+.cellLight {
+	border: 1px solid black;
+}
+.cellDark {
+	border: 1px solid white;
+}
+
+.cell.x,
+.cell.o {
+	cursor: not-allowed;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+	border-top: none;
+}
+
+.cell:first-child,
+.cell:nth-child(4),
+.cell:nth-child(7) {
+	border-left: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+	border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+	border-bottom: none;
+}
+
+.cell.x::before,
+.cell.x::after {
+	content: '';
+	width: calc(var(--mark-size)*.15);
+	height: var(--mark-size);
+	position: absolute;
+}
+
+.cell.xLight::before,
+.cell.xLight::after {
+	background-color: black;
+}
+.cell.xDark::before,
+.cell.xDark::after {
+	background-color: white;
+}
+
+.cell.x::before {
+	transform: rotate(45deg);
+}
+
+.cell.x::after {
+	transform: rotate(-45deg);
+}
+
+.cell.o::before,
+.cell.o::after {
+	content: '';
+	position: absolute;
+	border-radius: 50%;
+}
+
+.cell.o::before {
+	width: var(--mark-size);
+	height: var(--mark-size);
+}
+
+.cell.oLight::before {
+	background-color: black;
+}
+.cell.oDark::before {
+	background-color: white;
+}
+
+.cell.o::after {
+	width: calc(var(--mark-size)*.75);
+	height: calc(var(--mark-size)*.75);
+}
+
+.cell.oLight::after {
+	background-color: white;
+}
+
+.cell.oDark::after {
+	background-color: black;
+}
+
+.winning-message {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, .8);
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 5rem;
+	flex-direction: column;
+}
+
+.winning-message button {
+	font-size: 3rem;
+	background-color: white;
+	border: 1px solid black;
+	padding: .25em .5em;
+	cursor: pointer;
+}
+
+.winning-message button:hover {
+	background-color: black;
+	color: white;
+	border-color: gold;
+}
+
+.winning-message.show {
+	display: flex;
+}
+
+#lightMode {
+	font-size: 3rem;
+	background-color: white;
+	border: 1px solid black;
+	padding: .25em .5em;
+	cursor: pointer;
+	position: fixed;
+	top: 0;
+	left: 50;
+	right: 0;
+}
+#darkMode {
+	font-size: 3rem;
+	background-color: black;
+	border: 1px solid white;
+	color: white;
+	padding: .25em .5em;
+	cursor: pointer;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#darkMode:hover {
+	background-color: black;
+	border-color: 1px solid white;
+	color: gold;
+}
+
+#lightMode:hover {
+	background-color: gold;
+	color: black;
+	border-color: gold;
+}
+
+.playerTurnDisplay {
+	justify-content: center;
+	position: fixed;
+	top: 90px;
+	left: 40%;
+	align-items: center;
+	font-size: 3rem;
+	color: black;
+}
+
+.playerTurnDisplayDark {
+	color: white;
+}
+
+.playerTurnDisplayLight {
+	color: black;
+}
